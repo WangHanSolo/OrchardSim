@@ -33,7 +33,7 @@ def main():
     initLoc = chrono.ChVectorD(-25, 0, 0.7)
 
     # Vehicle target speed (cruise-control)
-    target_speed = 2
+    target_speed = 10
 
 
     #  Create the HMMWV vehicle, set parameters, and initialize
@@ -74,8 +74,7 @@ def main():
 
     # Create the path-follower, cruise-control driver
     # Use a parameterized ISO double lane change (to left)
-    path = ChBezierCurve.read(veh.GetDataFile("path_file"))
-#    path = veh.StraightLinePath(chrono.ChVectorD(-25, 0, 0.5), chrono.ChVectorD(25,0,0.5), 1)
+    path = veh.StraightLinePath(chrono.ChVectorD(-25, 0, 0.5), chrono.ChVectorD(0,0,0.5), 1)
     driver = veh.ChPathFollowerDriver(my_hmmwv.GetVehicle(), path, "my_path", target_speed)
     driver.GetSteeringController().SetLookAheadDistance(5)
     driver.GetSteeringController().SetGains(0.8, 0, 0)
